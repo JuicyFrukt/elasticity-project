@@ -1,16 +1,28 @@
-# This is a sample Python script.
+from MaterialBody import Body
+from Trace_plt import trace_plot
+from Trace import Trace
+from Streamlines import Streamlines
+from Space import Space
+from MaterialPoint import Point
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import numpy as np
+from V_fields import plot_velocity_field
 
+time = (0.1, 0.5)
+t = np.arange(time[0], time[1], 0.1)
+line = Body(length=2, points_number=200)
+trajectory = Trace(time)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+start_points = trajectory.create_trace_start_points(line)
+trajectory.lines()
+points = trajectory.all_lines
+space_points_list = [Point(25, 0), Point(0, -25)]
+space = Space(space_points_list)
+space.initial_limits()
+space_bounding_x = space.x
+space_bounding_y = space.y
+trace_plot(points, space_bounding_x, space_bounding_y)
+stream_line = Streamlines(trajectory)
+stream_line.tg()
+for t_ in [t[0],t[-1]]:
+    plot_velocity_field(t_,x_range = space_bounding_x, y_range = space_bounding_y)
