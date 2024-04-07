@@ -1,7 +1,7 @@
 from MaterialBody import Body
 from Trace_plt import trace_plot
 from Trace import Trace
-from Streamlines import Streamlines
+'from Streamlines import Streamlines'
 from Space import Space
 from MaterialPoint import Point
 
@@ -22,7 +22,7 @@ space.initial_limits()
 space_bounding_x = space.x
 space_bounding_y = space.y
 trace_plot(points, space_bounding_x, space_bounding_y)
-stream_line = Streamlines(trajectory)
-stream_line.tg()
+'stream_line = Streamlines(trajectory)'
+'stream_line.tg()'
 for t_ in [t[0],t[-1]]:
     plot_velocity_field(t_,x_range = space_bounding_x, y_range = space_bounding_y)
